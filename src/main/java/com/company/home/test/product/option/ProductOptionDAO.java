@@ -9,6 +9,23 @@ import java.util.List;
 import com.company.home.util.DBconnection;
 
 public class ProductOptionDAO {
+	//getPro_num
+	public int getPro_num(String pro_name) throws Exception{
+		Connection con = DBconnection.getConnection();
+		String sql = "SELECT PRO_NUM FROM PRODUCT WHERE PRO_NAME = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, pro_name);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		int result = 0;
+		
+		if(rs.next()) {
+			result = rs.getInt("PRO_NUM");
+		}
+		return result;
+	}
+	
 	//getMax
 	public int getMax() throws Exception{
 		Connection con = DBconnection.getConnection();
